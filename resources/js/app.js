@@ -116,9 +116,9 @@ $(document).ready(function(){              //$(this)等同$(e.currentTarget)
       panel.selectedEvent = $(e.currentTarget);  //記錄點到的event, for delete用
 
       var id = $(this).data('id');
-      //AJAX call -get event detail
+      // AJAX call -get event detail
       let actionUrl = '/events/' + id;
-      $.get(actionUrl, {}, function(data, textStatus, xhr){
+      $.get(actionUrl, id, function(data, textStatus, xhr){
           $(panel.el).find('[name="id"]').val(data.id);
           $(panel.el).find('[name="title"]').val(data.title);
           $(panel.el).find('[name="start_time"]').val(data.start_time);
@@ -136,13 +136,13 @@ $(document).ready(function(){              //$(this)等同$(e.currentTarget)
      if ($(this).is('.create') || $(this).is('.update')){
 
          var data = $(panel.el).find('form').serialize();
-         // var action = '/events';
+
          if ($(this).is('.create')) {
               var action = '/events';
          }
          if ($(this).is('.update')) {
-              var id = $(panel.el).find('[name="id"').val();
-              var action = '/events/' +id;
+              var id = $(panel.el).find('[name="id"]').val();
+              var action = '/eventupdate/' +id;
               data = "_method=put&" + data;   //這邊要湊出傳過去格式 Controller才讀得到
          }
       //collect data
@@ -183,13 +183,17 @@ $(document).ready(function(){              //$(this)等同$(e.currentTarget)
      if ($(this).is('.delete')){
          var result = confirm('Do you want to delete?');
          if (result){
-              var id = panel.selectedEvent.data('id');  //取得id
-              let actionUrl = '/events/' + id;
-                   $.post(actionUrl, {_method: 'delete'})
-                      .done(function(){
-                          panel.selectedEvent.remove();  //remove event from calendar
-                          panel.close();
-                      });
+            var id = panel.selectedEvent.data('id');  //取得id
+            let actionUrl = '/eventdelete/' + id;
+            $.ajax({
+                    method: "delete",
+                    url: actionUrl,
+                    data: { id: id,}
+                  })
+                    .done(function( msg ) {
+                      panel.selectedEvent.remove();  //remove event from calendar
+                      panel.close();
+                    });
          }
      }
   })

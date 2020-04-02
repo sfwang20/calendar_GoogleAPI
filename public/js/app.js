@@ -51822,10 +51822,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
 
     panel.selectedEvent = jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.currentTarget); //記錄點到的event, for delete用
 
-    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('id'); //AJAX call -get event detail
+    var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data('id'); // AJAX call -get event detail
 
     var actionUrl = '/events/' + id;
-    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.get(actionUrl, {}, function (data, textStatus, xhr) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default.a.get(actionUrl, id, function (data, textStatus, xhr) {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(panel.el).find('[name="id"]').val(data.id);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(panel.el).find('[name="title"]').val(data.title);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(panel.el).find('[name="start_time"]').val(data.start_time);
@@ -51845,7 +51845,7 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
 
       if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).is('.update')) {
         var id = jquery__WEBPACK_IMPORTED_MODULE_0___default()(panel.el).find('[name="id"').val();
-        var action = '/events/' + id;
+        var action = '/eventupdate/' + id;
         data = "_method=put&" + data; //這邊要湊出傳過去格式 Controller才讀得到
       } //collect data
 
@@ -52036,8 +52036,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/shinfu/Documents/calendar_Laravel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/shinfu/Documents/calendar_Laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/shinfu/Documents/calendar_GoogleAPI/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/shinfu/Documents/calendar_GoogleAPI/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
