@@ -13,20 +13,18 @@
 
 Route::middleware(['auth'])->group(function ()
 {
-  // Route::get('/auth', 'CalendarController@auth');
-  // Route::get('/oauth2callback', 'CalendarController@oauth2callback');
-  //Read all
   Route::get('/', 'EventController@auth');
   Route::get('/oauth2callback', 'EventController@oauth2callback');
 
   Route::get('/show', 'EventController@show');
+
   //Read event
   Route::get('/events/{event}', 'EventController@read');
 
   //Create, Update, Delete
   Route::post('/events', 'EventController@store');
-  Route::put('/eventupdate/{event}', 'EventController@update');
-  Route::delete('/eventdelete/{event}', 'EventController@destroy');
+  Route::put('/events/{event}', 'EventController@update');
+  Route::delete('/events/{event}', 'EventController@destroy');
 
 });
 

@@ -142,7 +142,7 @@ $(document).ready(function(){              //$(this)等同$(e.currentTarget)
          }
          if ($(this).is('.update')) {
               var id = $(panel.el).find('[name="id"]').val();
-              var action = '/eventupdate/' +id;
+              var action = '/events/' +id;
               data = "_method=put&" + data;   //這邊要湊出傳過去格式 Controller才讀得到
          }
       //collect data
@@ -184,7 +184,7 @@ $(document).ready(function(){              //$(this)等同$(e.currentTarget)
          var result = confirm('Do you want to delete?');
          if (result){
             var id = panel.selectedEvent.data('id');  //取得id
-            let actionUrl = '/eventdelete/' + id;
+            let actionUrl = '/events/' + id;
             $.ajax({
                     method: "delete",
                     url: actionUrl,
