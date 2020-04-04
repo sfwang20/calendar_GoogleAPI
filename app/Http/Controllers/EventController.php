@@ -99,7 +99,7 @@ class EventController extends Controller
     $timeMin = substr($firstDay, 0, 10).'T00:00:00+08:00';
 
     $lastDay = new Carbon('last day of this month');
-    $timeMax = substr($lastDay, 0, 10).'T00:00:00+08:00';
+    $timeMax = substr($lastDay, 0, 10).'T23:59:59+08:00';
 
     $optParams = array(
     'orderBy' => 'startTime',
@@ -217,8 +217,12 @@ class EventController extends Controller
 
   public function get_eventG($event, $request)
   {
-    $Start_dateTime = '2020-04-'.$event['date'].'T'.$event['start_time'].':00';
-    $End_dateTime = '2020-04-'.$event['date'].'T'.$event['end_time'].':00';
+    $firstDay = new Carbon('first day of this month');
+    $year = substr($firstDay, 0, 4);
+    $month = substr($firstDay, 5, 2);
+
+    $Start_dateTime = $year.'-'.$month.'-'.$event['date'].'T'.$event['start_time'].':00';
+    $End_dateTime = $year.'-'.$month.'-'.$event['date'].'T'.$event['end_time'].':00';
 
     $eventG = new \Google_Service_Calendar_Event(array(
         'summary' => $event['title'],
