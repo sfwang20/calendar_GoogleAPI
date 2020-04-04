@@ -163,14 +163,14 @@ class EventController extends Controller
   {
       //Title
       if ($this->eventTitleValidate($request))
-        return response()->json('Title caonnot be blank.', 404);
+        return response()->json('Title cannot be blank.', 404);
       //Time
       if ($this->eventTimeValidate($request))
-        return response()->json('Time caonnot be blank.', 404);
+        return response()->json('Time cannot be blank.', 404);
       //Time range
       if ($this->eventTimeRangeValidate($request))
         return response()->json('Time range error.', 404);
-    
+
       $client = $this->getToken();
       $service = new \Google_Service_Calendar($client);
 
@@ -189,10 +189,10 @@ class EventController extends Controller
   {
       //Title
       if ($this->eventTitleValidate($request))
-        return response()->json('Title caonnot be blank.', 404);
+        return response()->json('Title cannot be blank.', 404);
       //Time
       if ($this->eventTimeValidate($request))
-        return response()->json('Time caonnot be blank.', 404);
+        return response()->json('Time cannot be blank.', 404);
       //Time range
       if ($this->eventTimeRangeValidate($request))
         return response()->json('Time range error.', 404);
@@ -273,7 +273,7 @@ class EventController extends Controller
     }
   }
 
-  public function eventTimeValidate($value='')
+  public function eventTimeValidate($request)
   {
     if (empty($request->input('start_time')) || empty($request->input('end_time')))
       return true;
