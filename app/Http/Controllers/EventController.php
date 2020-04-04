@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Event;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -87,19 +88,24 @@ class EventController extends Controller
       $client = $this->getToken();
       $events = $this->getEvents($client);
 
-      return view('/index', ['events' => $events, 'dates' => $dates]);
+      return view('index', ['events' => $events, 'dates' => $dates]);
   }
 
   public function getEvents($client)
   {
-    // $client = $this->getToken(); //執行完後就會變成 授權的client物件
     $service = new \Google_Service_Calendar($client);
+
+    $firstDay = new Carbon('first day of this month');
+    $timeMin = substr($firstDay, 0, 10).'T00:00:00+08:00';
+
+    $lastDay = new Carbon('last day of this month');
+    $timeMax = substr($lastDay, 0, 10).'T00:00:00+08:00';
 
     $optParams = array(
     'orderBy' => 'startTime',
     'singleEvents' => true,
-    'timeMin' => '2020-04-01T00:00:00+08:00',
-    'timeMax' => '2020-04-30T23:59:59+08:00',
+    'timeMin' => $timeMin,
+    'timeMax' => $timeMax,
     );
     $eventsG = $service->events->listEvents('primary', $optParams);
     $events =[];
