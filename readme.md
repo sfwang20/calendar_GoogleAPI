@@ -7,8 +7,8 @@
 
 * Any CRUD will be synchronous with your Google Calendar
 * Register and login/logout features
-* Create event by double click on date and it'll open a panel to type data
-* Update/Delete/Read events by double click on a event and use the panel to type data
+* Create event by double click on date bloack
+* Update/Delete/Read events by double click on a event
 * Order event automatically according to time when user create/update events
 * Valiate time range 
 * Valiate title and time (cannot be blank) 
