@@ -1,4 +1,4 @@
-# Calendar
+# A Simple Calendar with Google calendar API
 
 簡易的線上行事曆，自動更新當前年月，並與Google Calendar做CRUD同步串接。
 
@@ -7,7 +7,7 @@
 http://calendarapi.shinfu.website
 
 
-### 功能
+### Features
 
 * Any CRUD will be synchronous with your Google Calendar
 * Register and login/logout features
@@ -17,7 +17,7 @@ http://calendarapi.shinfu.website
 * Valiate time range 
 * Valiate title and time (cannot be blank) 
 
-### 主要技術
+### Technique
 
 * HTML/CSS/Javascript
 * Laravel/PHP/MySQL
